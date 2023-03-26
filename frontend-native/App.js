@@ -2,34 +2,31 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const App = () => {
-
-
-
+function App() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    // fetch('http://127.0.0.1:8000/posts/')
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setPosts(data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
-    axios.get("http://127.0.0.1:8000/posts/")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      })
-      .catch((err) => console.log(err));
+    axios.get("http://127.0.0.1:8000/posts/").then((res) => {
+      setPosts(res.data)
+      console.log(res.data)
+    }).catch((error) => {
+      console.log(error)
+    });
   }, []);
 
   return (
     <SafeAreaView>
       {posts.map((post) => {
         return (
-          <Text>{post.title} {post.course} {post.location} </Text>
+          <View>
+            <Text>Title: {post.title}</Text>
+            <Text>Course: {post.course}</Text>
+            <Text>Location: {post.location}</Text>
+            <Text>Description: {post.text}</Text>
+            <Text>Date: {post.event_date}</Text>
+            <Text>Published: {post.published_date}</Text>
+            <Text></Text>
+
+          </View>
         );
       })}
     </SafeAreaView >
