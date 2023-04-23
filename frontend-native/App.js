@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AuthNavigation from './screens/AuthNavigation';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -25,7 +26,7 @@ function App() {
             <Text>Date: {post.event_date}</Text>
             <Text>Published: {post.published_date}</Text>
             <Text></Text>
-
+            <AuthNavigation />
           </View>
         );
       })}
